@@ -1,6 +1,6 @@
 --only-binary=:all:
 streamlit==1.43.2
-pandas==2.2.3
+pandas==2.3.3
 plotly==5.19.0
 numpy==2.2.4
 openpyxl==3.1.2
