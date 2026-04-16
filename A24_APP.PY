@@ -271,13 +271,13 @@ fig3.update_layout(
         showgrid=False,
     ),
     yaxis=dict(
-        title=dict(text="Taquilla Total ($)", font=dict(size=10)),          # ← label actualizado
+        title=dict(text="Taquilla Total ($)", font=dict(size=10)),          
         tickfont=dict(size=10),
         gridcolor="rgba(0,0,0,0.1)",
         gridwidth=1,
-        tickformat="$,.0f",                                                # ← formato dinero
+        tickformat="$,.0f",                                                
         range=[-df_bubble["TAQUILLA_TOTAL"].max() * 0.05,
-                df_bubble["TAQUILLA_TOTAL"].max() * 1.2],                  # ← espacio para etiquetas
+                df_bubble["TAQUILLA_TOTAL"].max() * 1.2],                  
     ),
     legend=dict(
         orientation="v",
@@ -865,5 +865,3 @@ for i, cuadrante in enumerate(["Estrella", "Vaca de Efectivo", "Interrogante", "
         )
 
 st.divider()
-
-# cd C:/Users/monzo/Desktop/PAD/A24 python -m streamlit run A24_APP.py
