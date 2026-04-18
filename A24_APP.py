@@ -560,16 +560,16 @@ if slide_actual == 0:
     ))
 
     fig_año.update_layout(
-        font=dict(color="#1a1a1a", size=25),
+        font=dict(color="#1a1a1a", size=20),
         xaxis=dict(
-            title=dict(text="Año", font=dict(size=25)),
+            title=dict(text="Año", font=dict(size=20)),
             tickfont=dict(size=20),
             showgrid=False,
             type="category",
         ),
         yaxis=dict(
-            title=dict(text="ROI General", font=dict(size=25)),
-            tickfont=dict(size=1),
+            title=dict(text="ROI General", font=dict(size=20)),
+            tickfont=dict(size=20),
             ticksuffix="x",
             gridcolor="rgba(0,0,0,0.15)",
             gridwidth=1,
@@ -579,7 +579,7 @@ if slide_actual == 0:
         height=750,
     )
 
-    fig_año.update_traces(textfont=dict(size=10))
+    fig_año.update_traces(textfont=dict(size=15))
     st.plotly_chart(fig_año)
 
 
@@ -606,9 +606,9 @@ elif slide_actual == 1:
     ))
 
     fig_genero.update_layout(
-        font=dict(color="#1a1a1a", size=25),
+        font=dict(color="#1a1a1a", size=20),
         xaxis=dict(
-            title=dict(text="ROI Promedio", font=dict(size=25)),
+            title=dict(text="ROI Promedio", font=dict(size=20)),
             tickfont=dict(size=20),
             ticksuffix="x",
             gridcolor="rgba(0,0,0,0.15)",
@@ -619,7 +619,7 @@ elif slide_actual == 1:
             ticktext=["1x", "2x", "5x", "10x", "25x", "50x", "100x", "250x", "500x"],
         ),
         yaxis=dict(
-            tickfont=dict(size=25),
+            tickfont=dict(size=20),
             automargin=True,
             showgrid=False,
         ),
@@ -627,7 +627,7 @@ elif slide_actual == 1:
         height=750,
     )
 
-    fig_genero.update_traces(textfont=dict(size=10))
+    fig_genero.update_traces(textfont=dict(size=15))
     st.plotly_chart(fig_genero)
 
 
@@ -660,9 +660,9 @@ elif slide_actual == 2:
     ))
 
     fig_dir.update_layout(
-        font=dict(color="#1a1a1a", size=25),
+        font=dict(color="#1a1a1a", size=20),
         xaxis=dict(
-            title=dict(text="ROI por Director", font=dict(size=25)),
+            title=dict(text="ROI por Director", font=dict(size=20)),
             tickfont=dict(size=20),
             ticksuffix="x",
             gridcolor="rgba(0,0,0,0.15)",
@@ -673,7 +673,7 @@ elif slide_actual == 2:
             ticktext=["1x", "2x", "5x", "10x", "25x", "50x", "100x", "250x", "500x"],
         ),
         yaxis=dict(
-            tickfont=dict(size=25),
+            tickfont=dict(size=20),
             automargin=True,
             showgrid=False,
         ),
@@ -681,7 +681,7 @@ elif slide_actual == 2:
         height=750,
     )
 
-    fig_dir.update_traces(textfont=dict(size=10))
+    fig_dir.update_traces(textfont=dict(size=15))
     st.plotly_chart(fig_dir)
 
 
@@ -714,9 +714,9 @@ elif slide_actual == 3:
     ))
 
     fig_pelis.update_layout(
-        font=dict(color="#1a1a1a", size=25),
+        font=dict(color="#1a1a1a", size=20),
         xaxis=dict(
-            title=dict(text="ROI", font=dict(size=25)),
+            title=dict(text="ROI", font=dict(size=20)),
             tickfont=dict(size=20),
             ticksuffix="x",
             gridcolor="rgba(0,0,0,0.15)",
@@ -727,7 +727,7 @@ elif slide_actual == 3:
             ticktext=["1x", "2x", "5x", "10x", "25x", "50x", "100x", "250x", "500x"],
         ),
         yaxis=dict(
-            tickfont=dict(size=25),
+            tickfont=dict(size=20),
             automargin=True,
             showgrid=False,
         ),
@@ -735,7 +735,7 @@ elif slide_actual == 3:
         height=750,
     )
 
-    fig_pelis.update_traces(textfont=dict(size=10))
+    fig_pelis.update_traces(textfont=dict(size=15))
     st.plotly_chart(fig_pelis)
 
 st.divider()
