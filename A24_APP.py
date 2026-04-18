@@ -10,18 +10,13 @@ st.set_page_config(
     layout="wide"
 )
 
-
-
 @st.cache_data
 def cargar_datos():
     a24 = pd.read_csv("A24.csv")
     a24.dropna(inplace=True)
+
     return a24
 a24 = cargar_datos()
-
-
-
-
 
 st.title("¿ESTÁ A24 STUDIO INVIRTIENDO EN LAS PELÍCULAS CORRECTAS?")
 col1, col2, col3 = st.columns([10, 10, 10])
@@ -29,7 +24,7 @@ with col2:
     st.image("PANEL A24.png",width=2000)
 
 st.markdown("""
-<div style="font-size:25px; line-height:1.5; color:#1a1a1a; text-align:justify;">
+<div style="font-size:20px; line-height:1.5; color:#1a1a1a; text-align:justify;">
 <br><br>
 <b>
  A24 es una productora de cine independiente fundada en 2012 en Nueva York por Daniel Katz, David Fenkel 
@@ -76,6 +71,7 @@ st.divider()
 #  LIMPIEZA DE DATOS
 # ─────────────────────────────────────────
 
+
 # Gráfica 1 — Barras: Películas por año
 df_año = (
     a24.groupby("AÑO ESTRENO")
@@ -106,12 +102,12 @@ df_tree = (
 )
 
 # Gráfica 4 — Burbujas: Películas ganadoras del Oscar
+
 df_oscar = (
     a24[a24["OSCAR"] == "YES"]
-    .sort_values("PRESUPUESTO", ascending=False)
+    .sort_values("AÑO ESTRENO", ascending=True)
     .reset_index(drop=True)
 )
-
 # Gráfica 6 — Dispersión: Taquilla vs Presupuesto
 df_scatter = a24.copy()
 df_scatter["oscar_bool"] = df_scatter["OSCAR"] == "YES"
@@ -122,6 +118,17 @@ df_scatter["oscar_bool"] = df_scatter["OSCAR"] == "YES"
 # ─────────────────────────────────────────
 
 # ── Gráfica 1: Películas por año ─────────────────────────────────────────────
+st.markdown("""
+<div style="font-size:20px; font-weight:bold; text-align: justify;">
+</b><br><br>
+A24 inició operaciones en 2013 con una presencia modesta de apenas 5 producciones, pero rápidamente consolidó su catálogo alcanzando su primer pico en 2016 con 18 títulos y su máximo histórico en 2019 con 20 producciones.  
+<br><br>
+La llegada de la pandemia en 2020 representó un freno abrupto, reduciendo su producción a solo 2 títulos. Sin embargo, este período de pausa forzada tuvo un efecto inesperado: mientras el mundo se refugiaba en plataformas de streaming, las audiencias jóvenes redescubrieron el catálogo de A24, consolidándola no como una productora más, sino como un referente cultural del cine de autor independiente.  
+<br><br>
+Este capital de marca acumulado durante la pandemia impulsó una recuperación sostenida desde 2021, llegando nuevamente a 15 producciones en 2022 — una señal clara de que A24 aprendió a operar en un ecosistema cinematográfico transformado.
+</div></b><br><br>
+""", unsafe_allow_html=True)
+
 fig1 = go.Figure()
 
 fig1.add_trace(
@@ -150,20 +157,33 @@ fig1.update_layout(
         title="Año de Estreno", color="#1a1a1a",           
         gridcolor="rgba(0,0,0,0.08)",                      
         tickmode="linear", tickangle=0, dtick=1,
+        tickfont=dict(size=13),
+        title_font=dict(size=14),
     ),
     yaxis=dict(
         title="Total de Películas", color="#1a1a1a",       
-        gridcolor="rgba(0,0,0,0.1)",                       
+        gridcolor="rgba(0,0,0,0.1)",
+        tickfont=dict(size=13),
+        title_font=dict(size=14),                       
     ),
     font=dict(color="#1a1a1a"),                            
     margin={"r": 40, "t": 100, "l": 60, "b": 80},
-    height=720,
+    height=750,
 )
 
 st.plotly_chart(fig1)
 st.divider()
 
 # ── Gráfica 2: Presupuesto vs Taquilla por año ───────────────────────────────
+st.markdown("""
+<div style="font-size:20px; font-weight:bold; text-align: justify;">
+</b><br><br>
+A24 atravesó una etapa de inversión inicial (2013–2014) donde los presupuestos superaban los ingresos de taquilla. El punto de equilibrio llegó con el reconocimiento de la Academia: el Oscar a Mejores Efectos Visuales por Ex Machina en 2016 marcó el inicio de una etapa de madurez (2015–2019), donde la brecha entre presupuesto y taquilla comenzó a invertirse consistentemente a favor del estudio.  
+<br><br>
+El colapso de 2020 es contundente en la gráfica: la taquilla casi desaparece mientras los presupuestos también se contraen al mínimo. A partir de 2021, los ingresos crecen de forma sostenida mientras los presupuestos permanecen bajos, lo que apunta a una estrategia deliberada: apostar por producciones de bajo costo con alto potencial de retorno cultural y comercial.
+</div></b><br><br>
+""", unsafe_allow_html=True)
+
 fig2 = go.Figure()
 
 fig2.add_trace(go.Scatter(
@@ -182,7 +202,7 @@ fig2.add_trace(go.Scatter(
 
 fig2.update_layout(
     title=dict(
-        text="<b>PRESUPUESTO VS TAQUILLA MUNDIAL POR AÑO</b><br><sup>Ciclo economico de A24</sup>",
+        text="<b>PRESUPUESTO VS TAQUILLA MUNDIAL POR AÑO</b><br><sup>Evolución financiera del estudio por año de estreno</sup>",
         font=dict(size=20, color="#1a1a1a", family="Arial Black"),  
         x=0.5, xanchor="center", y=0.97,
     ),
@@ -191,11 +211,15 @@ fig2.update_layout(
         title="Año de Estreno", color="#1a1a1a",           
         gridcolor="rgba(0,0,0,0.08)",
         tickmode="linear", tickangle=0, dtick=1,
+        tickfont=dict(size=20),
+        title_font=dict(size=20),
     ),
     yaxis=dict(
         title="Monto", color="#1a1a1a",  
         gridcolor="rgba(0,0,0,0.1)",
         type="log", tickformat="$,.0f", exponentformat="none",
+        tickfont=dict(size=20),
+        title_font=dict(size=20),
     ),
     legend=dict(
         orientation="v",
@@ -203,20 +227,35 @@ fig2.update_layout(
         xanchor="left",
         y=1,
         yanchor="top",
-        font=dict(size=15),
+        font=dict(size=20),
     ),
     font=dict(color="#1a1a1a"),                            
     margin={"r": 40, "t": 100, "l": 80, "b": 80},
-    height=650,
+    height=750,
 )
 
 st.plotly_chart(fig2)
 st.divider()
 
 # ── Gráfica 3: BURBUJAS por género ────────────────────────────────────────────
-# =========================
-# PREPARACIÓN DE DATOS
-# =========================
+# ── CÁLCULO DINÁMICO: % que representa Ne Zha II del total de taquilla 2025 ──
+taquilla_2025 = a24[a24["AÑO ESTRENO"] == 2025]["TAQUILLA MUNDIAL"].sum()
+nezha_taquilla = a24[a24["TITULO"].str.contains("Ne Zha", case=False, na=False)]["TAQUILLA MUNDIAL"].sum()
+pct_nezha = (nezha_taquilla / taquilla_2025 * 100) if taquilla_2025 > 0 else 0
+
+st.markdown(f"""
+<div style="font-size:20px; font-weight:bold; text-align: justify;">
+</b><br><br>
+El tamaño de cada burbuja revela la cantidad de producciones por género, mientras su posición vertical muestra el retorno en taquilla.  
+<br><br>
+Drama, Horror y Comedia forman el núcleo productivo de A24 — los géneros donde el estudio ha construido su identidad y concentra la mayor parte de su catálogo.  
+<br><br>
+Animation aparece casi solitaria en las alturas, con más de $2,500 Billones en taquilla y una burbuja relativamente pequeña, lo que indica pocas películas con un retorno extraordinario. Este es el unicornio del portafolio de A24: <em>Ne Zha II</em>, un fenómeno cultural en China que capitalizó la profunda conexión de una nación de más de 1 billón de personas con su mitología y tradición religiosa.  
+<br><br>
+Solo este título representa aproximadamente el <b>{pct_nezha:.0f}%</b> de toda la taquilla acumulada de A24 en <b>2025</b>.
+</div>
+</b><br><br>
+""", unsafe_allow_html=True)
 df_bubble = (
     a24.groupby("GENERO")
     .agg(
@@ -225,23 +264,21 @@ df_bubble = (
     )
     .reset_index()
 )
-
+ 
 fig3 = go.Figure()
-
+ 
 fig3.add_trace(go.Scatter(
+    x=df_bubble["GENERO"],
     y=df_bubble["TAQUILLA_TOTAL"],
-    mode="markers+text",
+    mode="markers",
     name="Género",
-    text=df_bubble["GENERO"],
-    textposition="top center",
-    textfont=dict(size=10, color="#1a1a1a"),
     marker=dict(
         size=df_bubble["TOTAL_PELICULAS"] / df_bubble["TOTAL_PELICULAS"].max() * 50 + 60,
-        color=df_bubble["TOTAL_PELICULAS"],                                 # ← color = películas
+        color=df_bubble["TOTAL_PELICULAS"],                                 
         colorscale=[[0, "#2d6e3a"], [0.5, "#e8c832"], [1, "#c0152a"]],
         showscale=True,
         colorbar=dict(
-            title=dict(text="Total de Películas", font=dict(size=15)),     # ← label corregido
+            title=dict(text="Total de Películas", font=dict(size=15)),   
             tickfont=dict(size=15),
             x=1.02,
         ),
@@ -257,27 +294,27 @@ fig3.add_trace(go.Scatter(
     ),
     customdata=df_bubble["TOTAL_PELICULAS"],
 ))
-
+ 
 fig3.update_layout(
     title=dict(
         text="<b>BURBUJAS POR GÉNERO</b><br><sup>Tamaño proporcional al número de películas</sup>",
-        font=dict(size=15, color="#1a1a1a"),
+        font=dict(size=25, color="#1a1a1a"),
         x=0.5, xanchor="center", y=0.97,
     ),
     xaxis=dict(
-        title=dict(text="Género", font=dict(size=10)),
-        tickfont=dict(size=15),
-        tickangle=0,
+        title=dict(text="Género", font=dict(size=20)),
+        tickfont=dict(size=20),
+        tickangle=-45,
         showgrid=False,
+        automargin=True,
+
     ),
     yaxis=dict(
-        title=dict(text="Taquilla Total ($)", font=dict(size=10)),          
-        tickfont=dict(size=10),
+        title=dict(text="Taquilla Total ($)", font=dict(size=20)),          
+        tickfont=dict(size=20),
         gridcolor="rgba(0,0,0,0.1)",
         gridwidth=1,
-        tickformat="$,.0f",                                                
-        range=[-df_bubble["TAQUILLA_TOTAL"].max() * 0.05,
-                df_bubble["TAQUILLA_TOTAL"].max() * 1.2],                  
+        tickformat="$,.0f",                                                                  
     ),
     legend=dict(
         orientation="v",
@@ -290,15 +327,32 @@ fig3.update_layout(
     paper_bgcolor="#ffffff",
     plot_bgcolor="#ffffff",
     height=750,
-
 )
+
 
 st.plotly_chart(fig3)
 st.divider()
+ 
+ ##################### grafica de oscares ###########
+st.markdown("""
+<div style="font-size:20px; font-weight:bold; text-align: justify;">
+</b><br><br>
+Ex Machina (2016) ganó el Oscar a Mejores Efectos Visuales, superando a producciones de gran presupuesto como Mad Max: Fury Road, The Martian y Star Wars.  
+<br><br>
+Room (2016) le dio a Brie Larson el Oscar a Mejor Actriz, mientras que Amy ganó como Mejor Documental, consolidando la presencia de A24 en distintos géneros.  
+<br><br>
+Minari (2021) obtuvo el premio a Mejor Actriz de Reparto para Youn Yuh-jung, y The Whale (2023) marcó el regreso de Brendan Fraser con el Oscar a Mejor Actor.  
+<br><br>
+El punto culminante llegó con Everything Everywhere All at Once (2023), que ganó 7 premios Oscar, posicionando a A24 como uno de los estudios más relevantes de la industria.
+</b><br><br>
+</div>
+""", unsafe_allow_html=True)
 
-# ── Gráfica 4: Burbujas — Películas ganadoras del Oscar ──────────────────────
+
+
+
 fig4 = go.Figure()
-
+ 
 fig4.add_trace(go.Scatter(
     x=df_oscar["TITULO"], y=df_oscar["PRESUPUESTO"],
     mode="markers", name="Presupuesto",
@@ -314,14 +368,14 @@ fig4.add_trace(go.Scatter(
     ),
     hovertemplate="<b>%{x}</b><br>Presupuesto: $%{y:,.0f}<extra></extra>",
 ))
-
+ 
 fig4.add_trace(go.Scatter(
     x=df_oscar["TITULO"], y=df_oscar["TAQUILLA MUNDIAL"],
     mode="markers", name="Taquilla Mundial",
     marker=dict(
         size=df_oscar["TAQUILLA MUNDIAL"],
         sizemode="area",
-        sizeref=2 * df_oscar["PRESUPUESTO"].max() / (50**2),  # ← mismo sizeref para comparar
+        sizeref=2 * df_oscar["PRESUPUESTO"].max() / (50**2),
         sizemin=20,
         color="#e8c832",
         line=dict(width=0),
@@ -330,24 +384,26 @@ fig4.add_trace(go.Scatter(
     ),
     hovertemplate="<b>%{x}</b><br>Taquilla: $%{y:,.0f}<extra></extra>",
 ))
-
+ 
 fig4.update_layout(
     title=dict(
-        text="<b>PELÍCULAS GANADORAS DEL ÓSCAR</b>",
+        text="<b>PELÍCULAS GANADORAS DEL ÓSCAR</b><br><sup>Presupuesto vs taquilla mundial de las películas premiadas</sup>",
         font=dict(size=20, color="#1a1a1a", family="Arial Black"),
         x=0.5, xanchor="center", y=0.97,
     ),
     xaxis=dict(
-        title=dict(text="Película", font=dict(size=20)),
+        title=dict(text="Película", font=dict(size=15)),
         tickfont=dict(size=15),
         color="#1a1a1a",
         tickangle=-45,
         automargin=True,
         gridcolor="rgba(0,0,0,0.08)",
+        categoryorder="array",
+        categoryarray=df_oscar["TITULO"].tolist(),
     ),
     yaxis=dict(
-        title=dict(text="Monto", font=dict(size=25)),
-        tickfont=dict(size=25),
+        title=dict(text="Monto", font=dict(size=15)),
+        tickfont=dict(size=15),
         color="#1a1a1a",
         gridcolor="rgba(0,0,0,0.1)",
         tickformat="$,.0f",
@@ -363,15 +419,28 @@ fig4.update_layout(
     margin=dict(r=150, t=100, l=60, b=100),
     height=800,
 )
-
+ 
 st.plotly_chart(fig4)
 st.divider()
 
-
 # ── Gráfica 7: Top 10 directores por ROI ─────────────────────────────────────
-# =========================
-# PREPARACIÓN DE DATOS
-# =========================
+
+st.markdown("""
+<div style="font-size:20px; font-weight:bold; text-align: justify;">
+</b><br><br>
+A24 no solo creció en ingresos, aprendió a invertir mejor. Durante sus primeros años, el estudio operaba con retornos modestos y variables, apostando por volumen para construir catálogo y reputación. El colapso de 2020 (0.22x) marcó el punto más bajo, pero también el punto de inflexión: a partir de 2021, los retornos comenzaron a escalar de forma sostenida, alcanzando 8.24x en 2023 y disparándose a 65.02x en 2025, impulsado en gran parte por el fenómeno <em>Ne Zha II</em> en el mercado chino.  
+<br><br>
+Animation lidera de forma aplastante con 126.23x — un resultado extraordinario que, como ya sabemos, está sostenido por el unicornio Ne Zha II. Sin embargo, lo más relevante está en los géneros que siguen: Drama (3.68x), Horror (3.15x) y Biographical Drama (2.83x) representan los motores reales y consistentes del portafolio.  
+<br><br>
+El Horror merece atención especial: con presupuestos naturalmente bajos y audiencias leales, es el género de mayor eficiencia operativa del catálogo. Por debajo de 1x aparecen géneros como Romance, Action y Mystery, territorios donde A24 ha explorado con libertad creativa, pero sin retorno consistente.  
+<br><br>
+A nivel de directores, Jiaozi (director de Ne Zha II) encabeza la lista con un ROI de 376x — un caso atípico que refleja el poder de conectar con las masas. Siguiendo Barry Jenkins (43.56x, Moonlight), los hermanos Philippou (20.43x, Talk to Me), y nombres como Darren Aronofsky, Greta Gerwig y Lulu Wang, todos por encima de 7x.  
+<br><br>
+Ne Zha II (376x) es el outlier evidente. Siguiendo Moonlight con 43.56x (con un presupuesto de apenas $4,000,000), Talk to Me con 20.43x, A Ghost Story con 19.52x, y referentes del horror como The Witch (10.11x) y Hereditary (8.02x).
+</div>
+</b><br><br>
+""", unsafe_allow_html=True)
+
 
 # ROI General por Año (serie de tiempo)
 df_año = a24.copy()
@@ -491,7 +560,6 @@ if slide_actual == 0:
     ))
 
     fig_año.update_layout(
-        title=dict(text="ROI POR AÑO", font=dict(size=25)),
         font=dict(color="#1a1a1a", size=25),
         xaxis=dict(
             title=dict(text="Año", font=dict(size=25)),
@@ -501,7 +569,7 @@ if slide_actual == 0:
         ),
         yaxis=dict(
             title=dict(text="ROI General", font=dict(size=25)),
-            tickfont=dict(size=25),
+            tickfont=dict(size=1),
             ticksuffix="x",
             gridcolor="rgba(0,0,0,0.15)",
             gridwidth=1,
@@ -509,10 +577,9 @@ if slide_actual == 0:
         ),
         margin=dict(t=100, l=20, r=80, b=60),
         height=750,
-        width=2000,
     )
 
-    fig_año.update_traces(textfont=dict(size=25))
+    fig_año.update_traces(textfont=dict(size=20))
     st.plotly_chart(fig_año)
 
 
@@ -539,7 +606,6 @@ elif slide_actual == 1:
     ))
 
     fig_genero.update_layout(
-        title=dict(text="ROI POR GÉNERO", font=dict(size=50)),
         font=dict(color="#1a1a1a", size=25),
         xaxis=dict(
             title=dict(text="ROI Promedio", font=dict(size=25)),
@@ -559,10 +625,9 @@ elif slide_actual == 1:
         ),
         margin=dict(t=100, l=20, r=120, b=60),
         height=750,
-        width=2000,
     )
 
-    fig_genero.update_traces(textfont=dict(size=50))
+    fig_genero.update_traces(textfont=dict(size=20))
     st.plotly_chart(fig_genero)
 
 
@@ -595,7 +660,6 @@ elif slide_actual == 2:
     ))
 
     fig_dir.update_layout(
-        title=dict(text="DIRECTORES POR ROI", font=dict(size=50)),
         font=dict(color="#1a1a1a", size=25),
         xaxis=dict(
             title=dict(text="ROI por Director", font=dict(size=25)),
@@ -615,10 +679,9 @@ elif slide_actual == 2:
         ),
         margin=dict(t=100, l=20, r=120, b=60),
         height=750,
-        width=2000,
     )
 
-    fig_dir.update_traces(textfont=dict(size=50))
+    fig_dir.update_traces(textfont=dict(size=20))
     st.plotly_chart(fig_dir)
 
 
@@ -651,7 +714,6 @@ elif slide_actual == 3:
     ))
 
     fig_pelis.update_layout(
-        title=dict(text="PELÍCULAS POR ROI", font=dict(size=25)),
         font=dict(color="#1a1a1a", size=25),
         xaxis=dict(
             title=dict(text="ROI", font=dict(size=25)),
@@ -671,26 +733,31 @@ elif slide_actual == 3:
         ),
         margin=dict(t=100, l=20, r=120, b=60),
         height=750,
-        width=2000,
     )
 
-    fig_pelis.update_traces(textfont=dict(size=50))
+    fig_pelis.update_traces(textfont=dict(size=20))
     st.plotly_chart(fig_pelis)
 
 st.divider()
 
-
-
 # ─────────────────────────────────────────
 #  MATRIZ BCG
 # ─────────────────────────────────────────
-st.header("Matriz BCG — ¿Cuáles son los caballos ganadores de A24?")
-st.write("""
-La Matriz BCG clasifica cada elemento según su Taquilla Mundial (eje Y) y su Presupuesto (eje X),
-dividiendo el cuadrante en cuatro zonas: **Estrellas** (alta taquilla, alto presupuesto),
-**Vacas de Efectivo** (alta taquilla, bajo presupuesto), **Interrogantes** (baja taquilla, alto presupuesto)
-y **Perros** (baja taquilla, bajo presupuesto).
-""")
+st.markdown("""
+<div style="font-size:20px; font-weight:bold; text-align: justify;">
+</b><br><br>
+La Matriz BCG clasifica cada elemento según su Taquilla Mundial (eje Y) y su Presupuesto (eje X), 
+dividiendo el cuadrante en cuatro zonas: <span style="color:#e8c832;">⭐ Estrellas</span> (alta taquilla, alto presupuesto), 
+<span style="color:#1d4e28;">🐄 Vacas de Efectivo</span> (alta taquilla, bajo presupuesto), 
+<span style="color:#8ab0c8;">❓ Interrogantes</span> (baja taquilla, alto presupuesto) y 
+<span style="color:#c0152a;">🐕 Perros</span> (baja taquilla, bajo presupuesto).
+<br><br>         
+El portafolio de A24 se encuentra equilibrado: casi la mitad de sus títulos se clasifican como Estrellas o Vacas de Efectivo, lo que implica que más del 50% de sus producciones generan retornos positivos en taquilla. Para un estudio de cine independiente que asume riesgos creativos de manera deliberada, este es un resultado extraordinario.  
+<br><br>
+Los directivos de A24 no solo seleccionan proyectos con alto potencial narrativo, sino que también demuestran una clara capacidad estratégica para decidir en qué películas invertir, optimizando así el balance entre riesgo creativo y rentabilidad comercial.
+</div>
+</b><br><br>
+""", unsafe_allow_html=True)
 
 # Botón de selección de dimensión
 dimension = st.radio(
@@ -716,7 +783,7 @@ elif dimension == "DIRECTOR":
     )
     df_bcg["GENERO"] = "Director"
 
-else:  # GENERO
+else:  
     df_bcg = (
         a24.groupby("GENERO")
         .agg(
@@ -865,3 +932,5 @@ for i, cuadrante in enumerate(["Estrella", "Vaca de Efectivo", "Interrogante", "
         )
 
 st.divider()
+
+# cd C:/Users/monzo/Desktop/PAD/A24 python -m streamlit run A24_APP.py
