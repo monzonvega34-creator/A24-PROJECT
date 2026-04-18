@@ -563,7 +563,7 @@ if slide_actual == 0:
         font=dict(color="#1a1a1a", size=25),
         xaxis=dict(
             title=dict(text="Año", font=dict(size=25)),
-            tickfont=dict(size=25),
+            tickfont=dict(size=20),
             showgrid=False,
             type="category",
         ),
@@ -609,7 +609,7 @@ elif slide_actual == 1:
         font=dict(color="#1a1a1a", size=25),
         xaxis=dict(
             title=dict(text="ROI Promedio", font=dict(size=25)),
-            tickfont=dict(size=25),
+            tickfont=dict(size=20),
             ticksuffix="x",
             gridcolor="rgba(0,0,0,0.15)",
             gridwidth=1,
@@ -663,7 +663,7 @@ elif slide_actual == 2:
         font=dict(color="#1a1a1a", size=25),
         xaxis=dict(
             title=dict(text="ROI por Director", font=dict(size=25)),
-            tickfont=dict(size=25),
+            tickfont=dict(size=20),
             ticksuffix="x",
             gridcolor="rgba(0,0,0,0.15)",
             gridwidth=1,
@@ -717,7 +717,7 @@ elif slide_actual == 3:
         font=dict(color="#1a1a1a", size=25),
         xaxis=dict(
             title=dict(text="ROI", font=dict(size=25)),
-            tickfont=dict(size=25),
+            tickfont=dict(size=20),
             ticksuffix="x",
             gridcolor="rgba(0,0,0,0.15)",
             gridwidth=1,
