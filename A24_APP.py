@@ -579,7 +579,7 @@ if slide_actual == 0:
         height=750,
     )
 
-    fig_año.update_traces(textfont=dict(size=20))
+    fig_año.update_traces(textfont=dict(size=10))
     st.plotly_chart(fig_año)
 
 
@@ -627,7 +627,7 @@ elif slide_actual == 1:
         height=750,
     )
 
-    fig_genero.update_traces(textfont=dict(size=20))
+    fig_genero.update_traces(textfont=dict(size=10))
     st.plotly_chart(fig_genero)
 
 
@@ -681,7 +681,7 @@ elif slide_actual == 2:
         height=750,
     )
 
-    fig_dir.update_traces(textfont=dict(size=20))
+    fig_dir.update_traces(textfont=dict(size=10))
     st.plotly_chart(fig_dir)
 
 
@@ -735,7 +735,7 @@ elif slide_actual == 3:
         height=750,
     )
 
-    fig_pelis.update_traces(textfont=dict(size=20))
+    fig_pelis.update_traces(textfont=dict(size=10))
     st.plotly_chart(fig_pelis)
 
 st.divider()
