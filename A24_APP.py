@@ -681,7 +681,7 @@ elif slide_actual == 2:
         height=750,
     )
 
-    fig_dir.update_traces(textfont=dict(size=15))
+    fig_dir.update_traces(textfont=dict(size=13))
     st.plotly_chart(fig_dir)
 
 
