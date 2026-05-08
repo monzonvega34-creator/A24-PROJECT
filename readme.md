@@ -21,19 +21,11 @@ Este proyecto aplica la **Matriz BCG (Boston Consulting Group)** como marco de a
 - Identificar qué géneros y directores generan mayor ROI
 - Evaluar la relación entre **presupuesto**, **taquilla mundial** y **reconocimiento en premios**
 
----
-
-Cada película fue posicionada en la matriz mediante un **índice compuesto** que combina:
-- ROI financiero (`worldwide_gross / budget`)
-- Cuota de atención mediática (premios + nominaciones normalizados)
-- Presupuesto relativo al promedio del catálogo
-
-
 ```
 
 
 ## 👤 Autor
 **JONATHAN MONZON**
 
-> **Fuentes:** WIKIPEDIA, Bloomberg, IMDb,
+**Fuentes:** WIKIPEDIA, Bloomberg, IMDb,
 *Proyecto desarrollado como parte de un portafolio de análisis de datos. Los datos fueron recopilados de fuentes públicas con fines académicos y de aprendizaje.*
