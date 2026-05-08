@@ -21,8 +21,7 @@ Este proyecto aplica la **Matriz BCG (Boston Consulting Group)** como marco de a
 - Identificar qué géneros y directores generan mayor ROI
 - Evaluar la relación entre **presupuesto**, **taquilla mundial** y **reconocimiento en premios**
 
-```
-
+---
 
 ## 👤 Autor
 **JONATHAN MONZON**
