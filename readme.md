@@ -26,5 +26,6 @@ Este proyecto aplica la **Matriz BCG (Boston Consulting Group)** como marco de a
 ## 👤 Autor
 **JONATHAN MONZON**
 
-**Fuentes:** WIKIPEDIA, Bloomberg, IMDb,
+**Fuentes:** WIKIPEDIA, Bloomberg, IMDb.
+
 *Proyecto desarrollado como parte de un portafolio de análisis de datos. Los datos fueron recopilados de fuentes públicas con fines académicos y de aprendizaje.*
