@@ -910,7 +910,7 @@ for a in anotaciones_bcg:
 
 fig_bcg.update_layout(
     title=dict(
-        text=f"<b>MATRIZ BCG — {dimension}</b><br><sup>Mediana de presupuesto y taquilla como punto de corte</sup>",
+        text=f"<b>MATRIZ BCG  {dimension}</b><br><sup>Mediana de presupuesto y taquilla como punto de corte</sup>",
         font=dict(size=30, color="#1a1a1a", family="Arial Black"),  
         x=0.5, xanchor="center", y=0.97,
     ),
