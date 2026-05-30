@@ -970,5 +970,3 @@ for i, cuadrante in enumerate(["Estrella", "Vaca de Efectivo", "Interrogante", "
         )
 
 st.divider()
-
-# cd C:/Users/monzo/Desktop/PAD/A24 python -m streamlit run A24_APP.py
